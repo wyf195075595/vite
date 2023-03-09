@@ -1,22 +1,43 @@
+<!--
+ * @Description: 
+ * @Author:  
+ * @Date: 2022-08-05 11:07:09
+ * @LastEditTime: 2023-01-04 14:18:23
+ * @LastEditors:  
+-->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="h-screen w-screen fixed top-0 left-0">
+    <!-- <m-dialog title="标题" v-model="text" :cancelHandler="() => {}"
+      >内容</m-dialog> -->
+    <!-- <m-input type="textarea" v-model="text" :max="20" /> -->
+    <!-- <m-message type="success" content="test" :duration="99999"></m-message> -->
+    <m-transition-router-view
+      mainComponentName="home"
+      :routerType="$store.getters.routerType"
+    >
+    </m-transition-router-view>
+  </div>
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+// import { useStore } from "vuex";
+// const store = useStore()
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+// // 用来修改状态、触发更新的函数
+// function increment() {
+//   store.commit('increment')
+// }
+
+import { getCurrentInstance, ref } from 'vue'
+const currentInstance = getCurrentInstance()
+const { $axios } = currentInstance.appContext.config.globalProperties
+
+// $axios.get('https://www.fastmock.site/mock/a75253fac8aad5461c1f262f1515fc63/api/test')
+//   .then(res=> {
+//       console.log(res);
+//   })
+
+const text = ref(true)
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
